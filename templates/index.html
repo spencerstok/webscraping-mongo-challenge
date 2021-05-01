@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission To Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get New Mars Data!</a></p>
+    </div>
+
+    <h2>Latest Mars News</h2>
+    <h3>{{ mars.news_title }}</h3>
+    <h3>{{ mars.news_p }}</h3>
+
+    
+
+    <div class="row">
+      <div class="col-md-5">
+        <h2>Featured Mars Image</h2>
+        <img src="{{ mars.featured_img_url }}" alt="featured">
+      </div>
+      <div class="col-md-5">
+        <h3>Mars Facts</h3>
+        <table>{{ mars.facts_html_str|safe }}</table>
+      </div>
+    </div>
+
+    <div class="row">
+      <h2>____________________________________________________________________________________________
+      </h2>
+    </div>
+
+    <div class="row">
+      {% for hemisphere_image_urls in mars.hemisphere_image_urls[:1] %}
+      <div class="col-md-3 col-md-offset-2">
+        <img src="{{ hemisphere_image_urls.img_url }}" width="400" height="400">
+        <h4>{{ hemisphere_image_urls.title }}</h4>
+      </div>
+      {% endfor %}  
+
+      {% for hemisphere_image_urls in mars.hemisphere_image_urls[1:2] %}
+      <div class="col-md-3 col-md-offset-2">
+        <img src="{{ hemisphere_image_urls.img_url }}" width="400" height="400">
+        <h4>{{ hemisphere_image_urls.title }}</h4>
+      </div>
+      {% endfor %} 
+    </div>
+
+    <div class="row">
+      {% for hemisphere_image_urls in mars.hemisphere_image_urls[2:3] %}
+      <div class="col-md-3 col-md-offset-2">
+        <img src="{{ hemisphere_image_urls.img_url }}" width="400" height="400">
+        <h4>{{ hemisphere_image_urls.title }}</h4>
+      </div>
+      {% endfor %}  
+
+      {% for hemisphere_image_urls in mars.hemisphere_image_urls[3:4] %}
+      <div class="col-md-3 col-md-offset-2">
+        <img src="{{ hemisphere_image_urls.img_url }}" width="400" height="400">
+        <h4>{{ hemisphere_image_urls.title }}</h4>
+      </div>
+      {% endfor %} 
+    </div>
+
+  </div>
+  </div>
+</body>
+
+</html>
+
+<!-- 
+"news_title": mars.news_title,
+"news_p": mars.news_p,
+"featured_img_url": mars.featured_img_url,
+"facts_html_str": mars.facts_html_str,
+"hemisphere_image_urls": mars.hemisphere_image_urls -->
